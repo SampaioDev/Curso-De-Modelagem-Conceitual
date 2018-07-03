@@ -1,5 +1,6 @@
 package com.davisampaio.mc;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import com.davisampaio.mc.domain.Cidade;
 import com.davisampaio.mc.domain.Cliente;
 import com.davisampaio.mc.domain.Endereco;
 import com.davisampaio.mc.domain.Estado;
+import com.davisampaio.mc.domain.PagamentoComCartao;
+import com.davisampaio.mc.domain.Pedido;
 import com.davisampaio.mc.domain.Produto;
 import com.davisampaio.mc.domain.enums.TipoCliente;
 import com.davisampaio.mc.repositories.CategoriaRepository;
@@ -85,5 +88,11 @@ public class ModelagemConceitualApplication implements CommandLineRunner {
 		
 		clienteRepository.saveAll(Arrays.asList(cli1));
 		enderecoRepositoy.saveAll(Arrays.asList(e1,e2));
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		
+		Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32"), cli1, e1);
+		Pedido ped2 = new Pedido(null, sdf.parse("10/10/2017 19:35"), cli1, e2);
+	
 	}
 }
