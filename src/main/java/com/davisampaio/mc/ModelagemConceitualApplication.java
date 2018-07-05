@@ -131,6 +131,6 @@ public class ModelagemConceitualApplication implements CommandLineRunner {
 		
 		itemPedidoRepositoy.saveAll(Arrays.asList(ip1,ip2,ip3));
 		
-		
+				
 	}
 }
