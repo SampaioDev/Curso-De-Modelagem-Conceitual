@@ -130,5 +130,7 @@ public class ModelagemConceitualApplication implements CommandLineRunner {
 		p3.getItens().addAll(Arrays.asList(ip2));
 		
 		itemPedidoRepositoy.saveAll(Arrays.asList(ip1,ip2,ip3));
+		
+		
 	}
 }

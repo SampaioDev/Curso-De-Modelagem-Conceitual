@@ -15,21 +15,32 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Pedido implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private Date instant;
+	
+	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
+	private Date instante;
+	
+	@JsonManagedReference
 	@OneToOne(cascade=CascadeType.ALL, mappedBy="pedido")
 	private Pagamento pagamento;
+	
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
+	
 	@ManyToOne
 	@JoinColumn(name="endereco_de_entrega_id")
 	private Endereco enderecoDeEntrega;
+	
 	@OneToMany(mappedBy="id.pedido")
 	Set<ItemPedido> itens = new HashSet<>(); //Set Garante que não haja pedidos repetidos.
 				
@@ -40,7 +51,7 @@ public class Pedido implements Serializable{
 	public Pedido(Integer id, Date instant, Cliente cliente, Endereco enderecoDeEntrega) {
 		super();
 		this.id = id;
-		this.instant = instant;
+		this.instante = instant;
 		this.cliente = cliente;
 		this.enderecoDeEntrega = enderecoDeEntrega;
 	}
@@ -61,12 +72,12 @@ public class Pedido implements Serializable{
 		this.id = id;
 	}
 
-	public Date getInstant() {
-		return instant;
+	public Date getInstante() {
+		return instante;
 	}
 
-	public void setInstant(Date instant) {
-		this.instant = instant;
+	public void setInstant(Date instante) {
+		this.instante = instante;
 	}
 
 	public Pagamento getPagamento() {
