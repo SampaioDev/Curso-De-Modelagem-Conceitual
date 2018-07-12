@@ -28,14 +28,15 @@ public class CategoriaService {
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 	 }
 	
-	public List<Categoria> findAll() {
-		return repo.findAll();
-	}
-	
 	public Categoria insert (Categoria obj) {
 		obj.setId(null);
 		return repo.save(obj);
 	}
+	
+	public List<Categoria> findAll() {
+		return repo.findAll();
+	}
+	
 	
 	public Categoria update(Categoria obj) {
 		find(obj.getId());
